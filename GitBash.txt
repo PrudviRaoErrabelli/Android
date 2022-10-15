@@ -1,0 +1,22 @@
+https://github.com/PrudviRaoErrabelli/Android.git
+https://github.com/PrudviRaoErrabelli/Android.git
+https://github.com/PrudviRaoErrabelli/AndroidStudioProjects.git
+
+
+
+Git Bash commands------->>
+
+1.git init
+
+2.git add <filename>
+3.git add .
+4.git commit -m"comment"
+5.git status
+6.git remote add origin <url> 
+7.git remote -v
+8.git push -f origin master
+
+9.git clone <repo url>
+10. git checkout <branch name>
+
+11.cd .. ,cd - for back directiry
