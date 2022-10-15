@@ -1,0 +1,20 @@
+
+
+ private void updateUIValues(Location location) {
+        //update all of the text view objects with new location.
+        //tv_lat.setText(String.valueOf(location.getLatitude()));
+        tv_lat.setText(String.valueOf(location.getLatitude()));
+        tv_lon.setText(String.valueOf(location.getLongitude()));
+        tv_accuracy.setText(String.valueOf(location.getAccuracy()));
+
+        if (location.hasAltitude()) {
+            tv_altitude.setText(String.valueOf(location.getAltitude()));
+        } else {
+            tv_altitude.setText("Not available");
+        }
+        if (location.hasSpeed()) {
+            tv_speed.setText(String.valueOf(location.getSpeed()));
+        } else {
+            tv_speed.setText("Not available");
+        }
+    }

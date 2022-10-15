@@ -1,0 +1,63 @@
+
+
+ private void notification() {
+        createNotificationChanenel();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
+
+        Intent intent1 = new Intent(MainActivity.this,MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this,0,intent1,PendingIntent.FLAG_MUTABLE);
+
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(this,"ChannelId1");
+        notification.setContentText("Download in progress")
+                      .setSmallIcon(R.drawable.ic_baseline_add_location_24)
+                .setContentIntent(pendingIntent)
+                .setOngoing(true)
+                .setOnlyAlertOnce(true)
+                      .setPriority(NotificationCompat.PRIORITY_LOW);
+        /*int PROGRESS_MAX = 100;
+        final int PROGRESS_CURRENT = 0;
+        notification.setProgress(PROGRESS_MAX,PROGRESS_CURRENT,false);
+        notificationManager.notify(01,notification.build());*/
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i <=105 ; i+=5) {
+
+                    notification.setProgress(100, i, false);
+                    notificationManager.notify(01, notification.build());
+                    try {
+                        Thread.sleep(5 * 1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                    notification.setProgress(0,0,true);
+                    notificationManager.notify(01,notification.build());
+                try {
+                    Thread.sleep(5 * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                notification.setProgress(0,0,false)
+                        .setContentText("Download Completed")
+                        .setOngoing(false);
+                notificationManager.notify(01,notification.build());
+            }
+        }).start();
+
+        }
+		
+		
+		private void createNotificationChanenel() {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
+        {
+            NotificationChannel notificationChannel = new NotificationChannel(
+                    "ChannelId1","Foregroud Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(notificationChannel);
+
+        }
+    }
